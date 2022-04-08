@@ -20,7 +20,6 @@ import 'package:pavlok_technical_challenge/src/widgets/day_of_week_button.dart'
 import 'package:pavlok_technical_challenge/src/widgets/reminder_minutes_picker.dart'
     as rmp;
 
-
 /// This widget is a [m.PageView] that contains the layouts for the habit picker
 /// and sleep duration screens.  Uses [m.Column] and [m.Row] with
 /// the 'flex' parameter to implement a flexible layout that adapts to different
@@ -39,6 +38,7 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
 
   /// The page controller for the base screens
   final _screenController = m.PageController();
+
   /// The page controller for the good and bad habit button lists that are
   /// toggled between using tabs.
   final _habitPageController = m.PageController();
@@ -64,10 +64,12 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
   /// The page of habit buttons that should be displayed based on the tapping
   /// of the habit type tab header.
   s.HabitType _selectedHabitType = s.HabitType.good;
-  
+
   /// The interval in minutes that the [rmp.ReminderMinutesPicker] should be
   /// initialized to.
   int? _reminderMinutes = 30;
+
+  m.Size _screenSize = m.Size.zero;
 
   @override
   void initState() {
@@ -110,7 +112,7 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
       : 'assets/svg/bolt_gray.svg';
 
   ///  The onPressed callback for the habit button list tab header.
-  ///  
+  ///
   /// Animates to the next or previous page of habit buttons based on which tab
   /// is pressed.
   void _onPressed(s.HabitType habitType) {
@@ -133,7 +135,7 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
   }
 
   /// Builds the tab header for the habit buttton picker list.
-  /// 
+  ///
   /// Contains children of a [svg.SvgPicture] and a [m.Text] that change color
   /// based on the selection.
   m.Padding _buildTabHeader({
@@ -142,7 +144,12 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
     required s.HabitType habitType,
   }) =>
       m.Padding(
-        padding: const m.EdgeInsets.symmetric(vertical: 6.0),
+        padding: m.EdgeInsets.symmetric(
+          vertical: s.fromScreenSize(
+            6.0,
+            _screenSize,
+          ),
+        ),
         child: m.MaterialButton(
           focusColor: m.Colors.transparent,
           highlightColor: m.Colors.transparent,
@@ -156,8 +163,11 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
               width: 2.0,
             ),
           ),
-          padding: const m.EdgeInsets.all(
-            4.0,
+          padding: m.EdgeInsets.all(
+            s.fromScreenSize(
+              4.0,
+              _screenSize,
+            ),
           ),
           onPressed: () {
             _onPressed(habitType);
@@ -175,7 +185,7 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                 child: m.Text(
                   text,
                   style: m.TextStyle(
-                    fontSize: 14.0,
+                    fontSize: s.fromScreenSize(14.0, _screenSize),
                     color: habitType == _selectedHabitType ? c.purple : c.gray,
                     fontWeight: m.FontWeight.w600,
                   ),
@@ -238,13 +248,16 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                 const m.Spacer(
                   flex: 4,
                 ),
-                const m.Expanded(
+                m.Expanded(
                   flex: 12,
                   child: m.Center(
                     child: m.Text(
                       "What's your main goal?",
                       style: m.TextStyle(
-                        fontSize: 26.0,
+                        fontSize: s.fromScreenSize(
+                          26.0,
+                          _screenSize,
+                        ),
                         fontWeight: m.FontWeight.w600,
                       ),
                     ),
@@ -253,12 +266,12 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                 const m.Spacer(
                   flex: 1,
                 ),
-                const m.Expanded(
+                m.Expanded(
                   flex: 6,
                   child: m.Text(
                     "Let's start with one of these habits.",
                     style: m.TextStyle(
-                      fontSize: 17.0,
+                      fontSize: s.fromScreenSize(17.0, _screenSize),
                       fontWeight: m.FontWeight.w500,
                     ),
                   ),
@@ -325,10 +338,11 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
       underSleepGoal
           ? 'Under your sleep goal ( $_sleepGoalHoursString )'
           : 'Over your sleep goal ( $_sleepGoalHoursString )',
-      style: const m.TextStyle(
-        fontSize: 12.0,
+      style: m.TextStyle(
+        fontSize: s.fromScreenSize(12.0, _screenSize),
         fontWeight: m.FontWeight.w500,
       ),
+      textAlign: m.TextAlign.center,
     );
   }
 
@@ -343,17 +357,26 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
         m.Expanded(
           flex: 7,
           child: m.Row(
+            mainAxisAlignment: m.MainAxisAlignment.center,
             children: [
               svg.SvgPicture.asset(
                 'assets/svg/bulb.svg',
-                width: 24.0,
-                height: 24.0,
+                width: s.fromScreenSize(
+                  24.0,
+                  _screenSize,
+                ),
+                height: s.fromScreenSize(
+                  24.0,
+                  _screenSize,
+                ),
               ),
-              const m.Spacer(flex: 1),
-              m.Expanded(
-                flex: 14,
-                child: _sleepGoalLabel(),
+              m.SizedBox(
+                width: s.fromScreenSize(
+                  8.0,
+                  _screenSize,
+                ),
               ),
+              _sleepGoalLabel(),
             ],
           ),
         ),
@@ -420,8 +443,8 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
               child: m.Text(
                 handleType,
                 textAlign: m.TextAlign.left,
-                style: const m.TextStyle(
-                  fontSize: 12.0,
+                style: m.TextStyle(
+                  fontSize: s.fromScreenSize(12.0, _screenSize),
                   fontWeight: m.FontWeight.w600,
                   color: c.gray,
                 ),
@@ -434,8 +457,8 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                   handle,
                 ),
                 textAlign: m.TextAlign.left,
-                style: const m.TextStyle(
-                  fontSize: 20.0,
+                style: m.TextStyle(
+                  fontSize: s.fromScreenSize(20.0, _screenSize),
                   fontWeight: m.FontWeight.w600,
                 ),
               ),
@@ -478,9 +501,16 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                           padding: const m.EdgeInsets.all(
                             0.0,
                           ),
-                          iconSize: 32.0,
-                          icon: const m.Icon(
+                          iconSize: s.fromScreenSize(
+                            32.0,
+                            _screenSize,
+                          ),
+                          icon: m.Icon(
                             m.Icons.chevron_left_sharp,
+                            size: s.fromScreenSize(
+                              32.0,
+                              _screenSize,
+                            ),
                           ),
                         ),
                       ),
@@ -490,12 +520,15 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                     ],
                   ),
                 ),
-                const m.Expanded(
+                m.Expanded(
                   flex: 4,
                   child: m.Text(
                     'Set bedtime and wake up',
                     style: m.TextStyle(
-                      fontSize: 25.0,
+                      fontSize: s.fromScreenSize(
+                        25.0,
+                        _screenSize,
+                      ),
                       fontWeight: m.FontWeight.w600,
                     ),
                   ),
@@ -514,10 +547,19 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                 m.Expanded(
                   flex: 7,
                   child: m.Padding(
-                    padding: const m.EdgeInsets.only(
-                      left: 6.0,
-                      top: 6.0,
-                      bottom: 18.0,
+                    padding: m.EdgeInsets.only(
+                      left: s.fromScreenSize(
+                        6.0,
+                        _screenSize,
+                      ),
+                      top: s.fromScreenSize(
+                        6.0,
+                        _screenSize,
+                      ),
+                      bottom: s.fromScreenSize(
+                        18.0,
+                        _screenSize,
+                      ),
                     ),
                     child: m.Row(
                       children: [
@@ -545,18 +587,33 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                 m.Expanded(
                   flex: 7,
                   child: m.Card(
-                    elevation: 128.0,
+                    elevation: c.defaultHighElevation,
                     shape: m.RoundedRectangleBorder(
                       borderRadius: m.BorderRadius.circular(
-                        16.0,
+                        s.fromScreenSize(
+                          c.defaultBorderRadius,
+                          _screenSize,
+                        ),
                       ),
                     ),
                     child: m.Padding(
-                      padding: const m.EdgeInsets.only(
-                        left: 12.0,
-                        top: 4.0,
-                        right: 12.0,
-                        bottom: 8.0,
+                      padding: m.EdgeInsets.only(
+                        left: s.fromScreenSize(
+                          12.0,
+                          _screenSize,
+                        ),
+                        top: s.fromScreenSize(
+                          4.0,
+                          _screenSize,
+                        ),
+                        right: s.fromScreenSize(
+                          12.0,
+                          _screenSize,
+                        ),
+                        bottom: s.fromScreenSize(
+                          8.0,
+                          _screenSize,
+                        ),
                       ),
                       child: m.Column(
                         crossAxisAlignment: m.CrossAxisAlignment.stretch,
@@ -564,13 +621,13 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                           const m.Spacer(
                             flex: 1,
                           ),
-                          const m.Expanded(
+                          m.Expanded(
                             flex: 4,
                             child: m.Text(
                               'Repeat days',
                               textAlign: m.TextAlign.left,
                               style: m.TextStyle(
-                                fontSize: 16.0,
+                                fontSize: s.fromScreenSize(16.0, _screenSize),
                                 fontWeight: m.FontWeight.w900,
                                 letterSpacing: 1.0,
                                 color: c.black,
@@ -615,7 +672,10 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                             await m.showModalBottomSheet<int>(
                           shape: m.RoundedRectangleBorder(
                             borderRadius: m.BorderRadius.circular(
-                              16.0,
+                              s.fromScreenSize(
+                                c.defaultBorderRadius,
+                                _screenSize,
+                              ),
                             ),
                           ),
                           context: context,
@@ -636,12 +696,15 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                             m.RoundedRectangleBorder>(
                           m.RoundedRectangleBorder(
                             borderRadius: m.BorderRadius.circular(
-                              16.0,
+                              s.fromScreenSize(
+                                c.defaultBorderRadius,
+                                _screenSize,
+                              ),
                             ),
                           ),
                         ),
                         elevation: m.MaterialStateProperty.all(
-                          128.0,
+                          c.defaultHighElevation,
                         ),
                         backgroundColor: m.MaterialStateProperty.all(
                           m.Colors.white,
@@ -649,13 +712,13 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                       ),
                       child: m.Row(
                         children: [
-                          const m.Expanded(
+                          m.Expanded(
                             flex: 8,
                             child: m.Text(
                               'Remind me before bed time',
                               textAlign: m.TextAlign.center,
                               style: m.TextStyle(
-                                fontSize: 14.0,
+                                fontSize: s.fromScreenSize(14.0, _screenSize),
                                 fontWeight: m.FontWeight.w500,
                                 color: m.Colors.black,
                               ),
@@ -669,8 +732,8 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
                             child: m.Text(
                               '$_reminderMinutes min',
                               textAlign: m.TextAlign.center,
-                              style: const m.TextStyle(
-                                fontSize: 16.0,
+                              style: m.TextStyle(
+                                fontSize: s.fromScreenSize(16.0, _screenSize),
                                 fontWeight: m.FontWeight.w700,
                                 letterSpacing: 1.0,
                                 color: m.Colors.black,
@@ -708,6 +771,7 @@ class _ScreenPageViewState extends m.State<ScreenPageView>
 
   @override
   m.Widget build(m.BuildContext context) {
+    _screenSize = m.MediaQuery.of(context).size;
     return
         // m.Stack(
         // children: [

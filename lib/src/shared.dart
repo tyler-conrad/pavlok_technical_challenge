@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:flutter/material.dart' as m;
+
 import 'package:pavlok_technical_challenge/src/constants.dart' as c;
 
 /// Returns a [double] in the range \[-1.0, 1.0\] based on an input angle in
@@ -47,6 +49,11 @@ int sweepAngleMinutes(double angle) => (durationRoundedToFiveMinutesFromAngle(
           ),
         ))
     .inMinutes;
+
+double fromScreenSize(double baseSize, m.Size screenSize) => math.min(
+      baseSize,
+      baseSize * math.min(screenSize.width, screenSize.height) / 400.0,
+    );
 
 enum HabitType {
   good,

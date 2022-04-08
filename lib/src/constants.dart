@@ -60,5 +60,7 @@ const numMinutesInHour = 60;
 const numMinutesInDay = numHoursInDay * numMinutesInHour;
 const numFiveMinuteIntervalsInADay = numMinutesInDay / 5;
 const circularDurationPickerHandleStartRadians = 2.0 * math.pi * 0.75;
-
 const durationPickerInsideRadiusFactor = 0.38;
+const defaultBorderRadius = 16.0;
+const defaultElevation = 16.0;
+const defaultHighElevation = 128.0;

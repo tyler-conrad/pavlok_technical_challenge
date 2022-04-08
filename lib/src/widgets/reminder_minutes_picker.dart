@@ -3,9 +3,9 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart' as m;
 
 import 'package:pavlok_technical_challenge/src/constants.dart' as c;
+import 'package:pavlok_technical_challenge/src/shared.dart' as s;
 import 'package:pavlok_technical_challenge/src/widgets/purple_button.dart'
     as pb;
-
 
 /// Paints the [c.lightGray] handle at the top of the bottom sheet.
 class ReminderMinutesPickerDragHandlePainter extends m.CustomPainter {
@@ -53,9 +53,9 @@ class ReminderMinutesPicker extends m.StatefulWidget {
 }
 
 class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
-
   /// The number of intervals divisible by 5 in the range [5, 55];
   static const _numItems = 11;
+
   /// There are 5 widgets visible at any one time, so in order to center the
   /// currently selection when scrolled to the beginning or end 2 blank
   /// [m.Text]s are added to the beginning and end of the list of children.
@@ -77,6 +77,8 @@ class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
   /// on a [m.ScrollEndNotification].
   int _scrollSnapTo = 0;
   double _scrollPosInItemHeightUnits = _numVisibleItems.toDouble();
+
+  m.Size _screenSize = m.Size.zero;
 
   @override
   void initState() {
@@ -182,7 +184,10 @@ class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
                         child: m.Text(
                           minutes,
                           style: m.TextStyle(
-                            fontSize: 6.0 * fadeFactor + 18.0,
+                            fontSize: s.fromScreenSize(
+                              6.0 * fadeFactor + 18.0,
+                              _screenSize,
+                            ),
                             fontWeight: m.FontWeight.w500,
                             color: c.black2.withOpacity(
                               // math.min(1.0, fadeFactor * 1.5),
@@ -198,13 +203,16 @@ class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
             },
           ),
         ),
-        const m.Expanded(
+        m.Expanded(
           flex: 1,
           child: m.Center(
             child: m.Text(
               'min',
               style: m.TextStyle(
-                fontSize: 24.0,
+                fontSize: s.fromScreenSize(
+                  24.0,
+                  _screenSize,
+                ),
                 fontWeight: m.FontWeight.w500,
                 color: c.black2,
               ),
@@ -220,17 +228,29 @@ class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
 
   @override
   m.Widget build(m.BuildContext context) {
-    final screenSize = m.MediaQuery.of(
+    _screenSize = m.MediaQuery.of(
       context,
     ).size;
     return m.SizedBox(
-      height: screenSize.height * 0.5,
+      height: _screenSize.height * 0.5,
       child: m.Padding(
-        padding: const m.EdgeInsets.only(
-          left: 24.0,
-          top: 8.0,
-          right: 24.0,
-          bottom: 18.0,
+        padding: m.EdgeInsets.only(
+          left: s.fromScreenSize(
+            24.0,
+            _screenSize,
+          ),
+          top: s.fromScreenSize(
+            8.0,
+            _screenSize,
+          ),
+          right: s.fromScreenSize(
+            24.0,
+            _screenSize,
+          ),
+          bottom: s.fromScreenSize(
+            18.0,
+            _screenSize,
+          ),
         ),
         child: m.Column(
           crossAxisAlignment: m.CrossAxisAlignment.stretch,
@@ -244,13 +264,16 @@ class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
             const m.Spacer(
               flex: 1,
             ),
-            const m.Expanded(
+            m.Expanded(
               flex: 4,
               child: m.Text(
                 'Reminder',
                 textAlign: m.TextAlign.center,
                 style: m.TextStyle(
-                  fontSize: 23.0,
+                  fontSize: s.fromScreenSize(
+                    23.0,
+                    _screenSize,
+                  ),
                   fontWeight: m.FontWeight.w600,
                   color: c.black2,
                 ),

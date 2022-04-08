@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' as m;
 
 import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-
+import 'package:pavlok_technical_challenge/src/shared.dart' as s;
 
 /// A [m.ElevatedButton] used at the bottom of the screen for 'Next' and 'Done'
 ///
@@ -26,6 +26,7 @@ class PurpleButton extends m.StatelessWidget {
   m.Widget build(
     m.BuildContext context,
   ) {
+    final screenSize = m.MediaQuery.of(context).size;
     return m.Column(
       crossAxisAlignment: m.CrossAxisAlignment.stretch,
       children: [
@@ -38,7 +39,7 @@ class PurpleButton extends m.StatelessWidget {
             onPressed: _onPressed,
             style: m.ButtonStyle(
               elevation: m.MaterialStateProperty.all(
-                16.0,
+                c.defaultElevation,
               ),
               backgroundColor: m.MaterialStateProperty.all(
                 c.purple,
@@ -49,16 +50,22 @@ class PurpleButton extends m.StatelessWidget {
               shape: m.MaterialStateProperty.all(
                 m.RoundedRectangleBorder(
                   borderRadius: m.BorderRadius.circular(
-                    16.0,
+                    s.fromScreenSize(
+                      c.defaultBorderRadius,
+                      screenSize,
+                    ),
                   ),
                 ),
               ),
             ),
             child: m.Text(
               _text,
-              style: const m.TextStyle(
+              style: m.TextStyle(
                 color: m.Colors.white,
-                fontSize: 16.0,
+                fontSize: s.fromScreenSize(
+                  16.0,
+                  screenSize,
+                ),
                 fontWeight: m.FontWeight.w600,
               ),
             ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart' as m;
 import 'package:flutter_svg/flutter_svg.dart' as svg;
 
 import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-
+import 'package:pavlok_technical_challenge/src/shared.dart' as s;
 
 /// An [m.ElevatedButton] representing good and bad habits.
 ///
@@ -48,6 +48,8 @@ class _HabitButtonState extends m.State<HabitButton>
 
   late final m.AnimationController _textColorAnimationController;
   late final m.Animation<m.Color?> _textColorAnimation;
+
+  m.Size _screenSize = m.Size.zero;
 
   void _setupOutlineColorAnimation() {
     _outlineColorAnimationController = m.AnimationController(
@@ -166,7 +168,10 @@ class _HabitButtonState extends m.State<HabitButton>
       widget._text,
       style: m.TextStyle(
         color: _textColorAnimation.value,
-        fontSize: 17.0,
+        fontSize: s.fromScreenSize(
+          17.0,
+          _screenSize,
+        ),
         fontWeight: m.FontWeight.w600,
       ),
     );
@@ -174,13 +179,22 @@ class _HabitButtonState extends m.State<HabitButton>
 
   m.Container _buildIcon() {
     return m.Container(
-      width: 52.0,
-      height: 52.0,
-      decoration: const m.BoxDecoration(
+      width: s.fromScreenSize(
+        52.0,
+        _screenSize,
+      ),
+      height: s.fromScreenSize(
+        52.0,
+        _screenSize,
+      ),
+      decoration: m.BoxDecoration(
         color: c.lightPurple,
         borderRadius: m.BorderRadius.all(
           m.Radius.circular(
-            16.0,
+            s.fromScreenSize(
+              c.defaultBorderRadius,
+              _screenSize,
+            ),
           ),
         ),
       ),
@@ -200,6 +214,7 @@ class _HabitButtonState extends m.State<HabitButton>
 
   @override
   m.Widget build(m.BuildContext context) {
+    _screenSize = m.MediaQuery.of(context).size;
     return m.ElevatedButton(
       style: m.ButtonStyle(
         side: m.MaterialStateProperty.all(
@@ -209,29 +224,38 @@ class _HabitButtonState extends m.State<HabitButton>
           ),
         ),
         elevation: m.MaterialStateProperty.all(
-          16.0,
+          c.defaultElevation,
         ),
         shadowColor: m.MaterialStateProperty.all(
           m.Colors.black38,
         ),
         padding: m.MaterialStateProperty.all(
-          const m.EdgeInsets.all(
-            10.0,
+          m.EdgeInsets.all(
+            s.fromScreenSize(
+              10.0,
+              _screenSize,
+            ),
           ),
         ),
         backgroundColor: m.MaterialStateProperty.all(
           _backgroundColorAnimation.value,
         ),
         minimumSize: m.MaterialStateProperty.all(
-          const m.Size(
+          m.Size(
             0.0,
-            72.0,
+            s.fromScreenSize(
+              72.0,
+              _screenSize,
+            ),
           ),
         ),
         shape: m.MaterialStateProperty.all<m.RoundedRectangleBorder>(
           m.RoundedRectangleBorder(
             borderRadius: m.BorderRadius.circular(
-              16.0,
+              s.fromScreenSize(
+                c.defaultBorderRadius,
+                _screenSize,
+              ),
             ),
           ),
         ),
@@ -244,8 +268,11 @@ class _HabitButtonState extends m.State<HabitButton>
         mainAxisAlignment: m.MainAxisAlignment.start,
         children: [
           _buildIcon(),
-          const m.SizedBox(
-            width: 16.0,
+          m.SizedBox(
+            width: s.fromScreenSize(
+              16.0,
+              _screenSize,
+            ),
           ),
           _buildLabel(),
         ],

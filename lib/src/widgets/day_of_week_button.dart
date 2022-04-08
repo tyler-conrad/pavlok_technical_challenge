@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' as m;
 
 import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-
+import 'package:pavlok_technical_challenge/src/shared.dart' as s;
 
 /// A circular [m.TextButton] button with a single child [m.Text] that draws a
 /// single letter representing the day of the week.
@@ -142,6 +142,7 @@ class _DayOfWeekButtonState extends m.State<DayOfWeekButton>
 
   @override
   m.Widget build(m.BuildContext context) {
+    final screenSize = m.MediaQuery.of(context).size;
     return m.TextButton(
       style: m.ButtonStyle(
         elevation: m.MaterialStateProperty.all(
@@ -161,7 +162,10 @@ class _DayOfWeekButtonState extends m.State<DayOfWeekButton>
         widget._letter,
         style: m.TextStyle(
           color: _textColorAnimation.value,
-          fontSize: 16.0,
+          fontSize: s.fromScreenSize(
+            16.0,
+            screenSize,
+          ),
           fontWeight: m.FontWeight.w600,
         ),
       ),

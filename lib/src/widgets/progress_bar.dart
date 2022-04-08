@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart' as m;
 
 import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-
+import 'package:pavlok_technical_challenge/src/shared.dart' as s;
 
 /// Paints the rounded rectangles representing the progress bar for the current
 /// step.
@@ -102,6 +102,8 @@ class _ProgressBarState extends m.State<ProgressBar>
   late int _currentStep;
   double _easeProgress = 0.0;
 
+  m.Size _screenSize = m.Size.zero;
+
   void _setupEaseAnimation() {
     _easeController = m.AnimationController(
       vsync: this,
@@ -158,8 +160,11 @@ class _ProgressBarState extends m.State<ProgressBar>
   m.Text _buildStepsLabel() {
     return m.Text(
       '$_currentStep of ${widget._steps}',
-      style: const m.TextStyle(
-        fontSize: 14.0,
+      style: m.TextStyle(
+        fontSize: s.fromScreenSize(
+          14.0,
+          _screenSize,
+        ),
         fontWeight: m.FontWeight.w500,
       ),
     );
@@ -184,6 +189,7 @@ class _ProgressBarState extends m.State<ProgressBar>
   m.Widget build(
     m.BuildContext context,
   ) {
+    _screenSize = m.MediaQuery.of(context).size;
     return m.Row(
       children: [
         const m.Spacer(

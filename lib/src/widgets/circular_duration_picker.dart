@@ -47,7 +47,6 @@ class ResolvedSvgs {
   final svg.DrawableRoot wakeup;
 }
 
-
 /// This class holds the logic for drawing a circular interval selector using a
 /// [m.Canvas].
 ///
@@ -71,8 +70,10 @@ class CircularDurationPickerPainter extends m.CustomPainter {
           repaint: repaint,
         );
 
+  static const _canvasSizeScaleFactor = 240.0;
   static const _numHourTicks = 12;
   static const _numMinuteTicks = 72;
+
   /// Represents the outside offset surrounding the rectangle that is drawn with
   /// a shadowed tube shape cut out of it.
   static const _rectOverdrawSize = 32.0;
@@ -83,6 +84,17 @@ class CircularDurationPickerPainter extends m.CustomPainter {
   final m.Offset _wakeUp;
   final ResolvedSvgs? _svgs;
 
+  /// Scales fixed sizes based on the canvas size.
+  double _fromCanvasSize(
+    double baseSize,
+    m.Size canvasSize,
+  ) =>
+      math.min(
+        baseSize,
+        baseSize *
+            math.min(canvasSize.width, canvasSize.height) /
+            _canvasSizeScaleFactor,
+      );
 
   /// Returns an [m.Path] that is a rectangle with a tube subtracted from it.
   ///
@@ -157,10 +169,17 @@ class CircularDurationPickerPainter extends m.CustomPainter {
   ///
   /// Two calls are made to the this method, one for the bedtime where the image
   /// is a moon and one for the wake up time where the image is a sun.
-  void _drawSvg(m.Canvas canvas, m.Offset center, svg.DrawableRoot? svgRoot) {
-    m.Size desiredSize = const m.Size(
-      16.0,
-      16.0,
+  void _drawSvg(m.Canvas canvas, m.Offset center, svg.DrawableRoot? svgRoot,
+      m.Size size) {
+    m.Size desiredSize = m.Size(
+      _fromCanvasSize(
+        16.0,
+        size,
+      ),
+      _fromCanvasSize(
+        16.0,
+        size,
+      ),
     );
     canvas.save();
     canvas.translate(
@@ -376,13 +395,21 @@ class CircularDurationPickerPainter extends m.CustomPainter {
   /// Used by [_drawHourTicksAndLabels] to draw the text for the hour at 2 hour
   /// intervals along a circular path on the inside of the
   /// [CircularDurationPicker].
-  void _drawHourLabel(int index, HourTick hourTick, ui.Size size,
-      ui.Canvas canvas, ui.Offset center, double radius) {
+  void _drawHourLabel(int index, HourTick hourTick, m.Size size,
+      m.Canvas canvas, m.Offset center, double radius) {
     final m.TextPainter textPainter = m.TextPainter(
       text: m.TextSpan(
         text: hourTick.text,
         style: m.TextStyle(
-          fontSize: index % 3 == 0 ? 11.0 : 9.0,
+          fontSize: index % 3 == 0
+              ? _fromCanvasSize(
+                  11.0,
+                  size,
+                )
+              : _fromCanvasSize(
+                  9.0,
+                  size,
+                ),
           fontWeight: m.FontWeight.w600,
           color: c.gray,
         ),
@@ -512,8 +539,11 @@ class CircularDurationPickerPainter extends m.CustomPainter {
       size,
       center,
       s.sweepAngleHours,
-      const m.TextStyle(
-        fontSize: 30.0,
+      m.TextStyle(
+        fontSize: _fromCanvasSize(
+          30.0,
+          size,
+        ),
         fontWeight: m.FontWeight.w800,
         color: c.purple,
       ),
@@ -534,8 +564,11 @@ class CircularDurationPickerPainter extends m.CustomPainter {
       size,
       center,
       s.sweepAngleMinutes,
-      const m.TextStyle(
-        fontSize: 14.0,
+      m.TextStyle(
+        fontSize: _fromCanvasSize(
+          14.0,
+          size,
+        ),
         fontWeight: m.FontWeight.w600,
         color: m.Colors.black,
       ),
@@ -583,6 +616,8 @@ class CircularDurationPickerPainter extends m.CustomPainter {
   /// of the picker.
   @override
   void paint(m.Canvas canvas, m.Size size) async {
+    print(size);
+
     _drawTubeShadow(canvas, size);
 
     final center = m.Offset(size.width * 0.5, size.height * 0.5);
@@ -628,12 +663,14 @@ class CircularDurationPickerPainter extends m.CustomPainter {
       canvas,
       center + _bedtime,
       _svgs?.bedtime,
+      size,
     );
 
     _drawSvg(
       canvas,
       center + _wakeUp,
       _svgs?.wakeup,
+      size,
     );
 
     _drawBackgroundOverShadowAndArc(
@@ -726,6 +763,7 @@ class CircularDurationPicker extends m.StatefulWidget {
   /// the picker.  Using a relative offset from the center allows the offset to
   /// be used like a vector representing a radius and angle.
   final m.ValueNotifier<m.Offset> _bedtime;
+
   /// The wakup handle offset from the center of the picker.
   final m.ValueNotifier<m.Offset> _wakeUp;
 
@@ -863,7 +901,6 @@ class _CircularDurationPickerState extends m.State<CircularDurationPicker>
         m.Offset(minSize * 0.5, minSize * 0.5));
   }
 
-
   /// Updates the reference held in a [m.ValueNotifier] in order to update the
   /// position of a handle.  The [IndexAndOffset.index] of 0 represents the
   /// bedtime handle, 1 represents the wake up handle.
@@ -968,8 +1005,13 @@ class _CircularDurationPickerState extends m.State<CircularDurationPicker>
     m.BuildContext context,
   ) {
     return m.Padding(
-      padding: const m.EdgeInsets.all(
-        8.0,
+      padding: m.EdgeInsets.all(
+        s.fromScreenSize(
+          8.0,
+          m.MediaQuery.of(
+            context,
+          ).size,
+        ),
       ),
       child: m.LayoutBuilder(
         builder: (

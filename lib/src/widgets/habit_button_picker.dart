@@ -4,7 +4,6 @@ import 'package:collection/collection.dart';
 import 'package:pavlok_technical_challenge/src/shared.dart' as s;
 import 'package:pavlok_technical_challenge/src/widgets/habit_button.dart' as hb;
 
-
 /// Represents a list of either good or bad [hb.HabitButton]s.  This widget
 /// takes a single [s.HabitType] constructor argument that determines whether a
 /// list of good or bad habits should be built as the children of this widget.
@@ -28,11 +27,10 @@ class HabitButtonPicker extends m.StatefulWidget {
 }
 
 class _HabitButtonPickerState extends m.State<HabitButtonPicker> {
-  late final List<hb.HabitButton> _goodHabitButtons;
-  late final List<hb.HabitButton> _badHabitButtons;
+  List<hb.HabitButton> _goodHabitButtons = [];
+  List<hb.HabitButton> _badHabitButtons = [];
 
-  late final List<m.Padding> _paddedGoodHabitButtons;
-  late final List<m.Padding> _paddedBadHabitButtons;
+  m.Size _screenSize = m.Size.zero;
 
   /// Whenever a [hb.HabitButton] is pressed this function deselects all buttons
   /// including the one pressed.  The button that was pressed contains logic
@@ -53,8 +51,8 @@ class _HabitButtonPickerState extends m.State<HabitButtonPicker> {
 
   /// Initialize the fixed state of the bad habit buttons and populates the
   /// [_paddedBadHabitButtons] field.
-  void _setupAndPadBadHabitButtons() {
-    _badHabitButtons = [
+  List<hb.HabitButton> _buildBadHabitButtons() {
+    return [
       hb.HabitButton(
         onPressed: _onBadHabitButtonPress,
         text: "Can't wake up",
@@ -92,20 +90,12 @@ class _HabitButtonPickerState extends m.State<HabitButtonPicker> {
         ),
       ),
     ];
-
-    _paddedBadHabitButtons = _badHabitButtons
-        .mapIndexed(
-          addBottomPaddingToAllButLast(
-            _badHabitButtons.length,
-          ),
-        )
-        .toList();
   }
 
   /// Initialize the fixed state of the good habit buttons and populates the
   /// [_paddedGoodHabitButtons] field.
-  void _setupAndPadGoodHabitButtons() {
-    _goodHabitButtons = [
+  List<hb.HabitButton> _buildGoodHabitButtons() {
+    return [
       hb.HabitButton(
         onPressed: _onGoodHabitButtonPress,
         text: 'Set bedtime and wake up',
@@ -152,50 +142,64 @@ class _HabitButtonPickerState extends m.State<HabitButtonPicker> {
         ),
       ),
     ];
-
-    _paddedGoodHabitButtons = _goodHabitButtons
-        .mapIndexed(
-          addBottomPaddingToAllButLast(
-            _goodHabitButtons.length,
-          ),
-        )
-        .toList();
   }
 
   @override
   void initState() {
     super.initState();
-    _setupAndPadGoodHabitButtons();
-    _setupAndPadBadHabitButtons();
+    _goodHabitButtons = _buildGoodHabitButtons();
+    _badHabitButtons = _buildBadHabitButtons();
   }
 
   ///Adds padding around a habit button.
-  m.Padding Function(
-    int,
-    hb.HabitButton,
-  ) addBottomPaddingToAllButLast(
+  m.Padding addBottomPaddingToAllButLast(
+    int index,
+    hb.HabitButton habitButton,
     int numHabitButtons,
+    m.Size screenSize,
   ) =>
-      (index, habitButton) => index == numHabitButtons - 1
+      index == numHabitButtons - 1
           ? m.Padding(
               padding: m.EdgeInsets.zero,
               child: habitButton,
             )
           : m.Padding(
-              padding: const m.EdgeInsets.only(
-                bottom: 16.0,
+              padding: m.EdgeInsets.only(
+                bottom: s.fromScreenSize(
+                  16.0,
+                  _screenSize,
+                ),
               ),
               child: habitButton,
             );
 
   @override
   m.Widget build(m.BuildContext context) {
+    _screenSize = m.MediaQuery.of(context).size;
     return m.Column(
       mainAxisAlignment: m.MainAxisAlignment.start,
       crossAxisAlignment: m.CrossAxisAlignment.stretch,
       children: widget._selectedHabitType == s.HabitType.good
-          ? _paddedGoodHabitButtons
-          : _paddedBadHabitButtons,
+          ? _goodHabitButtons
+              .mapIndexed(
+                (index, habitButton) => addBottomPaddingToAllButLast(
+                  index,
+                  habitButton,
+                  _goodHabitButtons.length,
+                  _screenSize,
+                ),
+              )
+              .toList()
+          : _badHabitButtons
+              .mapIndexed(
+                (index, habitButton) => addBottomPaddingToAllButLast(
+                  index,
+                  habitButton,
+                  _badHabitButtons.length,
+                  _screenSize,
+                ),
+              )
+              .toList(),
     );
   }
 }
