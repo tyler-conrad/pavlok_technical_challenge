@@ -12,7 +12,8 @@ allows you to select a duration using 2 handles that can be rotated around a cen
 of day in a 24-hour period. The widget updates the handle positions when they are dragged and the start, end and time
 between durations are calculated and displayed to the user.
 
-When testing on Android I noticed that the SVG images that are rendered.  I opened a bug with the flutter_svg project and was informed that io.File is not supported on Android and that I should use the assetBundle API instead.  I intend to fix this issue shortly.
+There was a bug with SVG icons not rendering on Android, the fix was to use the AssetBundle api instead of dart:io to to
+load the images.
 
 Project documentation is available [here](https://tyler-conrad.github.io/pavlok_technical_challenge/).
 
