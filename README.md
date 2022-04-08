@@ -17,6 +17,8 @@ display. I created a minimal reproducible example [here](https://github.com/tyle
 issue on the [flutter_svg](https://github.com/dnfield/flutter_svg) project
 tracker [here](https://github.com/dnfield/flutter_svg/issues/692).
 
+Project documentation is available [here](https://tyler-conrad.github.io/pavlok_technical_challenge/).
+
 Tested on:
 
 - Ubuntu 20.04.3 LTS
