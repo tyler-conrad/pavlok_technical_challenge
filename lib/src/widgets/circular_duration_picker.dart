@@ -165,7 +165,7 @@ class CircularDurationPickerPainter extends m.CustomPainter {
     );
   }
 
-  /// Draws an SVG image at the center of the handle.\
+  /// Draws an SVG image at the center of the handle.
   ///
   /// Two calls are made to the this method, one for the bedtime where the image
   /// is a moon and one for the wake up time where the image is a sun.
