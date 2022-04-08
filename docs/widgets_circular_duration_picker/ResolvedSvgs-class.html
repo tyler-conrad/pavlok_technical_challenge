@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the ResolvedSvgs class from the circular_duration_picker library, for the Dart programming language.">
+  <title>ResolvedSvgs class - circular_duration_picker library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../static-assets/styles.css?v1">
+  <link rel="icon" href="../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../index.html">pavlok_technical_challenge</a></li>
+    <li><a href="../widgets_circular_duration_picker/widgets_circular_duration_picker-library.html">circular_duration_picker</a></li>
+    <li class="self-crumb">ResolvedSvgs class</li>
+  </ol>
+  <div class="self-name">ResolvedSvgs</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-class">ResolvedSvgs</span> class 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+ 
+</h1></div>
+
+    
+<section class="desc markdown">
+  <p>This class holds the 'bedtime' and 'wakeUp' SVG images that are
+asynchronously loaded in the <a href="../widgets_circular_duration_picker/CircularDurationPicker-class.html">CircularDurationPicker</a> class.</p>
+<p>Using a <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a> within the <a href="https://api.flutter.dev/flutter/rendering/CustomPainter-class.html">m.CustomPainter</a> and drawing in <a href="https://api.flutter.dev/flutter/dart-async/Future/then.html">Future.then</a>
+callback caused a bug where the <a href="https://api.flutter.dev/flutter/dart-ui/Canvas-class.html">m.Canvas</a> was disposed before the callback
+was executed and the canvas that was referenced in the closure. The callback
+was invalidated and therefore threw an exception.</p>
+<p>To fix this issue I use a nullable <a href="../widgets_circular_duration_picker/ResolvedSvgs-class.html">ResolvedSvgs</a> variable that only takes
+on a value once the <a href="https://api.flutter.dev/flutter/dart-async/Future-class.html">Future</a> for both SVGs has been resolved.</p>
+</section>
+
+
+
+    <section class="summary offset-anchor" id="constructors">
+      <h2>Constructors</h2>
+
+      <dl class="constructor-summary-list">
+        <dt id="ResolvedSvgs" class="callable">
+          <span class="name"><a href="../widgets_circular_duration_picker/ResolvedSvgs/ResolvedSvgs.html">ResolvedSvgs</a></span><span class="signature">(<span class="parameter" id="-param-bedtime">{<span>required</span> <span class="type-annotation"><a href="https://pub.dev/documentation/flutter_svg/1.0.3/flutter_svg/DrawableRoot-class.html">DrawableRoot</a></span> <span class="parameter-name">bedtime</span>, </span><span class="parameter" id="-param-wakeup"><span>required</span> <span class="type-annotation"><a href="https://pub.dev/documentation/flutter_svg/1.0.3/flutter_svg/DrawableRoot-class.html">DrawableRoot</a></span> <span class="parameter-name">wakeup</span>}</span>)</span>
+        </dt>
+        <dd>
+           
+        </dd>
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor" id="instance-properties">
+      <h2>Properties</h2>
+
+      <dl class="properties">
+        <dt id="bedtime" class="property">
+  <span class="name"><a href="../widgets_circular_duration_picker/ResolvedSvgs/bedtime.html">bedtime</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/flutter_svg/1.0.3/flutter_svg/DrawableRoot-class.html">DrawableRoot</a></span> 
+
+</dt>
+<dd>
+   
+  <div class="features">final</div>
+
+</dd>
+
+        <dt id="hashCode" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span> 
+
+</dt>
+<dd class="inherited">
+  The hash code for this object. <a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">[...]</a>
+  <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="runtimeType" class="property inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></span>
+  <span class="signature">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/Type-class.html">Type</a></span> 
+
+</dt>
+<dd class="inherited">
+  A representation of the runtime type of the object. 
+  <div class="features">read-only, inherited</div>
+
+</dd>
+
+        <dt id="wakeup" class="property">
+  <span class="name"><a href="../widgets_circular_duration_picker/ResolvedSvgs/wakeup.html">wakeup</a></span>
+  <span class="signature">&#8594; <a href="https://pub.dev/documentation/flutter_svg/1.0.3/flutter_svg/DrawableRoot-class.html">DrawableRoot</a></span> 
+
+</dt>
+<dd>
+   
+  <div class="features">final</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="instance-methods">
+      <h2>Methods</h2>
+      <dl class="callables">
+        <dt id="noSuchMethod" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></span><span class="signature">(<wbr><span class="parameter" id="noSuchMethod-param-invocation"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Invocation-class.html">Invocation</a></span> <span class="parameter-name">invocation</span></span>)
+    <span class="returntype parameter">&#8594; dynamic</span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  Invoked when a non-existent method or property is accessed. <a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">[...]</a>
+  <div class="features">inherited</div>
+
+</dd>
+
+        <dt id="toString" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></span><span class="signature">(<wbr>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/String-class.html">String</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  A string representation of this object. <a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">[...]</a>
+  <div class="features">inherited</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+    <section class="summary offset-anchor inherited" id="operators">
+      <h2>Operators</h2>
+      <dl class="callables">
+        <dt id="operator ==" class="callable inherited">
+  <span class="name"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></span><span class="signature">(<wbr><span class="parameter" id="==-param-other"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/Object-class.html">Object</a></span> <span class="parameter-name">other</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.flutter.dev/flutter/dart-core/bool-class.html">bool</a></span>
+  </span>
+  
+
+</dt>
+<dd class="inherited">
+  The equality operator. <a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">[...]</a>
+  <div class="features">inherited</div>
+
+</dd>
+
+      </dl>
+    </section>
+
+
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../index.html">pavlok_technical_challenge</a></li>
+  <li><a href="../widgets_circular_duration_picker/widgets_circular_duration_picker-library.html">circular_duration_picker</a></li>
+  <li class="self-crumb">ResolvedSvgs class</li>
+</ol>
+
+
+    <h5>circular_duration_picker library</h5>
+    <ol>
+  <li class="section-title"><a href="../widgets_circular_duration_picker/widgets_circular_duration_picker-library.html#classes">Classes</a></li>
+  <li><a href="../widgets_circular_duration_picker/CircularDurationPicker-class.html">CircularDurationPicker</a></li>
+  <li><a href="../widgets_circular_duration_picker/CircularDurationPickerPainter-class.html">CircularDurationPickerPainter</a></li>
+  <li><a href="../widgets_circular_duration_picker/HourTick-class.html">HourTick</a></li>
+  <li><a href="../widgets_circular_duration_picker/IndexAndOffset-class.html">IndexAndOffset</a></li>
+  <li><a href="../widgets_circular_duration_picker/ResolvedSvgs-class.html">ResolvedSvgs</a></li>
+
+  <li class="section-title"><a href="../widgets_circular_duration_picker/widgets_circular_duration_picker-library.html#extensions">Extensions</a></li>
+  <li><a href="../widgets_circular_duration_picker/GlobalKeyExtension.html">GlobalKeyExtension</a></li>
+
+
+
+  <li class="section-title"><a href="../widgets_circular_duration_picker/widgets_circular_duration_picker-library.html#properties">Properties</a></li>
+  <li><a href="../widgets_circular_duration_picker/circularDurationPickerGlobalKey.html">circularDurationPickerGlobalKey</a></li>
+
+
+
+
+</ol>
+
+  </div>
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+    <ol>
+
+    <li class="section-title"><a href="../widgets_circular_duration_picker/ResolvedSvgs-class.html#constructors">Constructors</a></li>
+    <li><a href="../widgets_circular_duration_picker/ResolvedSvgs/ResolvedSvgs.html">ResolvedSvgs</a></li>
+
+
+    <li class="section-title">
+      <a href="../widgets_circular_duration_picker/ResolvedSvgs-class.html#instance-properties">Properties</a>
+    </li>
+    <li><a href="../widgets_circular_duration_picker/ResolvedSvgs/bedtime.html">bedtime</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li><a href="../widgets_circular_duration_picker/ResolvedSvgs/wakeup.html">wakeup</a></li>
+
+    <li class="section-title inherited"><a href="../widgets_circular_duration_picker/ResolvedSvgs-class.html#instance-methods">Methods</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/toString.html">toString</a></li>
+
+    <li class="section-title inherited"><a href="../widgets_circular_duration_picker/ResolvedSvgs-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    pavlok_technical_challenge
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../static-assets/highlight.pack.js?v1"></script>
+<script src="../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+

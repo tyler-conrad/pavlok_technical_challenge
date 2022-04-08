@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the paint method from the CircularDurationPickerPainter class, for the Dart programming language.">
+  <title>paint method - CircularDurationPickerPainter class - circular_duration_picker library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">pavlok_technical_challenge</a></li>
+    <li><a href="../../widgets_circular_duration_picker/widgets_circular_duration_picker-library.html">circular_duration_picker</a></li>
+    <li><a href="../../widgets_circular_duration_picker/CircularDurationPickerPainter-class.html">CircularDurationPickerPainter</a></li>
+    <li class="self-crumb">paint method</li>
+  </ol>
+  <div class="self-name">paint</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">paint</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+<div>
+  <ol class="annotation-list">
+    <li>@<a href="https://api.flutter.dev/flutter/dart-core/override-constant.html">override</a></li>
+  </ol>
+</div>
+
+<span class="returntype">void</span>
+<span class="name ">paint</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="paint-param-canvas"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Canvas-class.html">Canvas</a></span> <span class="parameter-name">canvas</span>, </span></li>
+<li><span class="parameter" id="paint-param-size"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-ui/Size-class.html">Size</a></span> <span class="parameter-name">size</span></span></li>
+</ol>)
+
+      <div class="features">override</div>
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Paints the custom <a href="../../widgets_circular_duration_picker/CircularDurationPicker-class.html">CircularDurationPicker</a> widget <a href="https://api.flutter.dev/flutter/dart-ui/Canvas-class.html">m.Canvas</a>.</p>
+<p>The order in which the <a href="https://api.flutter.dev/flutter/dart-ui/Canvas-class.html">m.Canvas</a> methods are called is important.</p>
+<p>First  a shadow is drawn for the tube cut out of the background.  Then the
+circles for the background of the handles are drawn.  One thing to note
+is that the gradient steps for handle background circles and the arc are
+aligned so that drawing the arc over the circles has the effect of
+making an arced rounded rectangle that has a <a href="../../constants/purpleHighlight-constant.html">c.purpleHighlight</a>
+fading effect.</p>
+<p>Next circles drawn with gradients are rendered with a smaller radius over
+the circles drawn earlier under the arc.  This is done to try to match the
+visual appearance from the Figma mockup.</p>
+<p>Next the SVGs for the handle are drawn</p>
+<p>Next the background represented by the <a href="https://api.flutter.dev/flutter/dart-ui/Path-class.html">m.Path</a> of a  rectangle with
+a tube cut out of it is drawn over the arc and the shadow.</p>
+<p>The <a href="../../constants/lightGray-constant.html">c.lightGray</a> minute ticks are drawn.</p>
+<p>Next the <a href="https://api.flutter.dev/flutter/material/Colors/black-constant.html">m.Colors.black</a> hour tick lines are drawn along with the text
+for the hour labels at each 2-hour tick.</p>
+<p>Finally the purple hours and black minutes lables are drawn to the center
+of the picker.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">@override
+void paint(m.Canvas canvas, m.Size size) async {
+  _drawTubeShadow(canvas, size);
+
+  final center = m.Offset(size.width * 0.5, size.height * 0.5);
+
+  _drawHandle(
+    canvas,
+    size,
+    center,
+    _wakeUp,
+    1.1,
+  );
+  _drawHandle(
+    canvas,
+    size,
+    center,
+    _bedtime,
+    1.1,
+  );
+
+  final radius = size.width * 0.5;
+
+  _drawDurationArc(
+    canvas,
+    center,
+    radius,
+  );
+
+  _drawHandle(
+    canvas,
+    size,
+    center,
+    _bedtime,
+  );
+
+  _drawHandle(
+    canvas,
+    size,
+    center,
+    _wakeUp,
+  );
+
+  _drawSvg(
+    canvas,
+    center + _bedtime,
+    _svgs?.bedtime,
+    size,
+  );
+
+  _drawSvg(
+    canvas,
+    center + _wakeUp,
+    _svgs?.wakeup,
+    size,
+  );
+
+  _drawBackgroundOverShadowAndArc(
+    canvas,
+    size,
+  );
+
+  _drawMinuteTicks(
+    canvas,
+    center,
+    radius,
+  );
+
+  _drawHourTicksAndLabels(
+    canvas,
+    size,
+    center,
+    radius,
+  );
+
+  _drawDurationHoursLabel(
+    canvas,
+    size,
+    center,
+  );
+
+  _drawDurationMinutesLabel(
+    canvas,
+    size,
+    center,
+  );
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">pavlok_technical_challenge</a></li>
+  <li><a href="../../widgets_circular_duration_picker/widgets_circular_duration_picker-library.html">circular_duration_picker</a></li>
+  <li><a href="../../widgets_circular_duration_picker/CircularDurationPickerPainter-class.html">CircularDurationPickerPainter</a></li>
+  <li class="self-crumb">paint method</li>
+</ol>
+
+
+    <h5>CircularDurationPickerPainter class</h5>
+    <ol>
+
+    <li class="section-title"><a href="../../widgets_circular_duration_picker/CircularDurationPickerPainter-class.html#constructors">Constructors</a></li>
+    <li><a href="../../widgets_circular_duration_picker/CircularDurationPickerPainter/CircularDurationPickerPainter.html">CircularDurationPickerPainter</a></li>
+
+
+    <li class="section-title inherited">
+      <a href="../../widgets_circular_duration_picker/CircularDurationPickerPainter-class.html#instance-properties">Properties</a>
+    </li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/hashCode.html">hashCode</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/runtimeType.html">runtimeType</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/rendering/CustomPainter/semanticsBuilder.html">semanticsBuilder</a></li>
+
+    <li class="section-title"><a href="../../widgets_circular_duration_picker/CircularDurationPickerPainter-class.html#instance-methods">Methods</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/rendering/CustomPainter/addListener.html">addListener</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/rendering/CustomPainter/hitTest.html">hitTest</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+    <li><a href="../../widgets_circular_duration_picker/CircularDurationPickerPainter/paint.html">paint</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/rendering/CustomPainter/removeListener.html">removeListener</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/rendering/CustomPainter/shouldRebuildSemantics.html">shouldRebuildSemantics</a></li>
+    <li><a href="../../widgets_circular_duration_picker/CircularDurationPickerPainter/shouldRepaint.html">shouldRepaint</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/rendering/CustomPainter/toString.html">toString</a></li>
+
+    <li class="section-title inherited"><a href="../../widgets_circular_duration_picker/CircularDurationPickerPainter-class.html#operators">Operators</a></li>
+    <li class="inherited"><a href="https://api.flutter.dev/flutter/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    pavlok_technical_challenge
+      1.0.0+1
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/script.js?v1"></script>
+
+
+
+</body>
+
+</html>
+
