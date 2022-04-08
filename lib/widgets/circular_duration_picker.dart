@@ -705,7 +705,7 @@ class CircularDurationPickerPainter extends m.CustomPainter {
 
 /// Used in order to distinguish which of the two handles has been selected.
 ///
-/// [collection.mapIndexed] is used on a list like
+/// [mapIndexed] is used on a list like
 /// \[m.Offset bedtime, m.Offset\ wakeUp].  The return value of the map
 /// operation is a list of [IndexAndOffset].  Because the reference to the
 /// offset representing the handle position gets replaced whenever the position
@@ -744,7 +744,7 @@ extension GlobalKeyExtension on m.GlobalKey {
   }
 }
 
-/// Global key assigned to the [CircluarDurationPicker] in order to determine
+/// Global key assigned to the [CircularDurationPicker] in order to determine
 /// its absolute screen coordinates.
 final circularDurationPickerGlobalKey = m.GlobalKey();
 
