@@ -3,18 +3,16 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart' as m;
 import 'package:flutter_svg/flutter_svg.dart' as svg;
 
-import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-import 'package:pavlok_technical_challenge/src/shared.dart' as s;
-import 'package:pavlok_technical_challenge/src/widgets/screen_padding.dart'
-    as sp;
-import 'package:pavlok_technical_challenge/src/widgets/circular_duration_picker.dart'
+import 'package:pavlok_technical_challenge/constants.dart' as c;
+import 'package:pavlok_technical_challenge/shared.dart' as s;
+import 'package:pavlok_technical_challenge/widgets/screen_padding.dart' as sp;
+import 'package:pavlok_technical_challenge/widgets/circular_duration_picker.dart'
     as cdp;
-import 'package:pavlok_technical_challenge/src/widgets/day_of_week_button.dart'
+import 'package:pavlok_technical_challenge/widgets/day_of_week_button.dart'
     as dowb;
-import 'package:pavlok_technical_challenge/src/widgets/reminder_minutes_picker.dart'
+import 'package:pavlok_technical_challenge/widgets/reminder_minutes_picker.dart'
     as rmp;
-import 'package:pavlok_technical_challenge/src/widgets/purple_button.dart'
-    as pb;
+import 'package:pavlok_technical_challenge/widgets/purple_button.dart' as pb;
 
 class SleepDurationScreen extends m.StatefulWidget {
   const SleepDurationScreen({m.Key? key}) : super(key: key);
@@ -75,6 +73,7 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
   void dispose() {
     _wakeUp.dispose();
     _bedtime.dispose();
+    super.dispose();
   }
 
   /// Returns an [m.Text] with text for being either over or under your sleep

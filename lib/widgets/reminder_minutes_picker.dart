@@ -2,9 +2,9 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart' as m;
 
-import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-import 'package:pavlok_technical_challenge/src/shared.dart' as s;
-import 'package:pavlok_technical_challenge/src/widgets/purple_button.dart'
+import 'package:pavlok_technical_challenge/constants.dart' as c;
+import 'package:pavlok_technical_challenge/shared.dart' as s;
+import 'package:pavlok_technical_challenge/widgets/purple_button.dart'
     as pb;
 
 /// Paints the [c.lightGray] handle at the top of the bottom sheet.

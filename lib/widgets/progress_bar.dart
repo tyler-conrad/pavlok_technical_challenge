@@ -2,8 +2,8 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart' as m;
 
-import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-import 'package:pavlok_technical_challenge/src/shared.dart' as s;
+import 'package:pavlok_technical_challenge/constants.dart' as c;
+import 'package:pavlok_technical_challenge/shared.dart' as s;
 
 /// Paints the rounded rectangles representing the progress bar for the current
 /// step.

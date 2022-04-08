@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart' as m;
 
-import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-import 'package:pavlok_technical_challenge/src/widgets/select_goal_screen.dart'
+import 'package:pavlok_technical_challenge/constants.dart' as c;
+import 'package:pavlok_technical_challenge/widgets/select_goal_screen.dart'
     as sgs;
-import 'package:pavlok_technical_challenge/src/widgets/sleep_duration_screen.dart'
+import 'package:pavlok_technical_challenge/widgets/sleep_duration_screen.dart'
     as sds;
 
 m.ThemeData _themeData() {

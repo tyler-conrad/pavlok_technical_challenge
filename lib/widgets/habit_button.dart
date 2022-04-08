@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' as m;
 import 'package:flutter_svg/flutter_svg.dart' as svg;
 
-import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-import 'package:pavlok_technical_challenge/src/shared.dart' as s;
+import 'package:pavlok_technical_challenge/constants.dart' as c;
+import 'package:pavlok_technical_challenge/shared.dart' as s;
 
 /// An [m.ElevatedButton] representing good and bad habits.
 ///

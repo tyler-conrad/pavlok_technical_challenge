@@ -1,24 +1,16 @@
-import 'dart:math' as math;
-
 import 'package:flutter/material.dart' as m;
 import 'package:flutter_svg/flutter_svg.dart' as svg;
 
-import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-import 'package:pavlok_technical_challenge/src/shared.dart' as s;
-import 'package:pavlok_technical_challenge/src/widgets/screen_padding.dart'
+import 'package:pavlok_technical_challenge/constants.dart' as c;
+import 'package:pavlok_technical_challenge/shared.dart' as s;
+import 'package:pavlok_technical_challenge/widgets/screen_padding.dart'
     as sp;
-import 'package:pavlok_technical_challenge/src/widgets/progress_bar.dart'
+import 'package:pavlok_technical_challenge/widgets/progress_bar.dart'
     as bar;
-import 'package:pavlok_technical_challenge/src/widgets/habit_button_picker.dart'
+import 'package:pavlok_technical_challenge/widgets/habit_button_picker.dart'
     as hbp;
-import 'package:pavlok_technical_challenge/src/widgets/purple_button.dart'
+import 'package:pavlok_technical_challenge/widgets/purple_button.dart'
     as pb;
-import 'package:pavlok_technical_challenge/src/widgets/circular_duration_picker.dart'
-    as cdp;
-import 'package:pavlok_technical_challenge/src/widgets/day_of_week_button.dart'
-    as dowb;
-import 'package:pavlok_technical_challenge/src/widgets/reminder_minutes_picker.dart'
-    as rmp;
 
 /// A screen displaying tabs that select between lists of good and bad habit
 /// buttons.

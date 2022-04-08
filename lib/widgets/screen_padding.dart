@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' as m;
 
-import 'package:pavlok_technical_challenge/src/shared.dart' as s;
+import 'package:pavlok_technical_challenge/shared.dart' as s;
 
 /// A widget for the fixed padding around the screens for the habit picker and
 /// the sleep duration picker screens.

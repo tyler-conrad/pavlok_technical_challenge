@@ -7,8 +7,8 @@ import 'package:flutter/material.dart' as m;
 import 'package:flutter_svg/flutter_svg.dart' as svg;
 import 'package:collection/collection.dart';
 
-import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-import 'package:pavlok_technical_challenge/src/shared.dart' as s;
+import 'package:pavlok_technical_challenge/constants.dart' as c;
+import 'package:pavlok_technical_challenge/shared.dart' as s;
 
 /// This class represents the data needed to draw a dark hour line along with
 /// the label for the line (for examples '12pm').
@@ -616,8 +616,6 @@ class CircularDurationPickerPainter extends m.CustomPainter {
   /// of the picker.
   @override
   void paint(m.Canvas canvas, m.Size size) async {
-    print(size);
-
     _drawTubeShadow(canvas, size);
 
     final center = m.Offset(size.width * 0.5, size.height * 0.5);

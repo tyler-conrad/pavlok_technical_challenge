@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' as m;
 
-import 'package:pavlok_technical_challenge/src/constants.dart' as c;
-import 'package:pavlok_technical_challenge/src/shared.dart' as s;
+import 'package:pavlok_technical_challenge/constants.dart' as c;
+import 'package:pavlok_technical_challenge/shared.dart' as s;
 
 /// A circular [m.TextButton] button with a single child [m.Text] that draws a
 /// single letter representing the day of the week.

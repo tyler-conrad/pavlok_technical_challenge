@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' as m;
 import 'package:collection/collection.dart';
 
-import 'package:pavlok_technical_challenge/src/shared.dart' as s;
-import 'package:pavlok_technical_challenge/src/widgets/habit_button.dart' as hb;
+import 'package:pavlok_technical_challenge/shared.dart' as s;
+import 'package:pavlok_technical_challenge/widgets/habit_button.dart' as hb;
 
 /// Represents a list of either good or bad [hb.HabitButton]s.  This widget
 /// takes a single [s.HabitType] constructor argument that determines whether a

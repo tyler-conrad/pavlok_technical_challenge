@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart' as m;
 
-import 'package:pavlok_technical_challenge/src/constants.dart' as c;
+import 'package:pavlok_technical_challenge/constants.dart' as c;
 
 /// Returns a [double] in the range \[-1.0, 1.0\] based on an input angle in
 /// radians.
