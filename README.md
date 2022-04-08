@@ -12,10 +12,7 @@ allows you to select a duration using 2 handles that can be rotated around a cen
 of day in a 24-hour period. The widget updates the handle positions when they are dragged and the start, end and time
 between durations are calculated and displayed to the user.
 
-When testing on Android I noticed that the SVG images that are rendered using a CustomPainter to the canvas do not
-display. I created a minimal reproducible example [here](https://github.com/tyler-conrad/android_svg_test) and opened an
-issue on the [flutter_svg](https://github.com/dnfield/flutter_svg) project
-tracker [here](https://github.com/dnfield/flutter_svg/issues/692).
+When testing on Android I noticed that the SVG images that are rendered.  I opened a bug with the flutter_svg project and was informed that io.File is not supported on Android and that I should use the assetBundle API instead.  I intend to fix this issue shortly.
 
 Project documentation is available [here](https://tyler-conrad.github.io/pavlok_technical_challenge/).
 
