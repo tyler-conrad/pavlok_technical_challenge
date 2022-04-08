@@ -813,19 +813,22 @@ class _CircularDurationPickerState extends m.State<CircularDurationPicker>
   /// loading the SVG files.  The returned future is resolved with a
   /// [ResolvedSvgs] instance when both futures have completed.
   Future<ResolvedSvgs> _loadSvgs() async {
-    final bedtimeString =
-        await io.File('assets/svg/moon_white.svg').readAsString();
+    final bundle = m.DefaultAssetBundle.of(context);
+
+    const moonPath = 'assets/svg/moon_white.svg';
     final bedtimeSvg = svg.svg.fromSvgString(
-      bedtimeString,
-      bedtimeString,
+      await bundle.loadString(moonPath),
+      moonPath,
     );
 
-    final wakeUpString =
-        await io.File('assets/svg/sun_white.svg').readAsString();
+    const sunPath = 'assets/svg/sun_white.svg';
     final wakeUpSvg = svg.svg.fromSvgString(
-      wakeUpString,
-      wakeUpString,
+      await bundle.loadString(
+        sunPath,
+      ),
+      sunPath,
     );
+
     final svgs = await Future.wait([bedtimeSvg, wakeUpSvg]);
     return ResolvedSvgs(
       bedtime: svgs[0],
