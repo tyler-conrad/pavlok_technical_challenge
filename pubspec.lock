@@ -60,9 +60,11 @@ packages:
   device_preview:
     dependency: "direct main"
     description:
-      path: "../flutter_device_preview/device_preview"
-      relative: true
-    source: path
+      path: device_preview
+      ref: hide_show_toolbar_listen_false
+      resolved-ref: "44aa4a9faed0be6eb25b0b2d26fbbba2d5c3e107"
+      url: "https://github.com/tyler-conrad/flutter_device_preview.git"
+    source: git
     version: "1.0.0"
   fake_async:
     dependency: transitive
