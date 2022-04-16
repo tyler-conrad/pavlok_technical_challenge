@@ -165,9 +165,8 @@ class _HabitButtonPickerState extends m.State<HabitButtonPicker> {
             )
           : m.Padding(
               padding: m.EdgeInsets.only(
-                bottom: s.fromScreenSize(
+                bottom: s.r(
                   16.0,
-                  _screenSize,
                 ),
               ),
               child: habitButton,

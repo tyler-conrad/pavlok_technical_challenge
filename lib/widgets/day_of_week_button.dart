@@ -142,7 +142,6 @@ class _DayOfWeekButtonState extends m.State<DayOfWeekButton>
 
   @override
   m.Widget build(m.BuildContext context) {
-    final screenSize = m.MediaQuery.of(context).size;
     return m.TextButton(
       style: m.ButtonStyle(
         elevation: m.MaterialStateProperty.all(
@@ -162,9 +161,8 @@ class _DayOfWeekButtonState extends m.State<DayOfWeekButton>
         widget._letter,
         style: m.TextStyle(
           color: _textColorAnimation.value,
-          fontSize: s.fromScreenSize(
+          fontSize: s.r(
             16.0,
-            screenSize,
           ),
           fontWeight: m.FontWeight.w600,
         ),

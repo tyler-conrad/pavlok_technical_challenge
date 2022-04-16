@@ -26,7 +26,6 @@ class PurpleButton extends m.StatelessWidget {
   m.Widget build(
     m.BuildContext context,
   ) {
-    final screenSize = m.MediaQuery.of(context).size;
     return m.Column(
       crossAxisAlignment: m.CrossAxisAlignment.stretch,
       children: [
@@ -50,9 +49,8 @@ class PurpleButton extends m.StatelessWidget {
               shape: m.MaterialStateProperty.all(
                 m.RoundedRectangleBorder(
                   borderRadius: m.BorderRadius.circular(
-                    s.fromScreenSize(
+                    s.r(
                       c.defaultBorderRadius,
-                      screenSize,
                     ),
                   ),
                 ),
@@ -62,9 +60,8 @@ class PurpleButton extends m.StatelessWidget {
               _text,
               style: m.TextStyle(
                 color: m.Colors.white,
-                fontSize: s.fromScreenSize(
+                fontSize: s.r(
                   16.0,
-                  screenSize,
                 ),
                 fontWeight: m.FontWeight.w600,
               ),

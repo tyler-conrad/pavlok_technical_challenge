@@ -49,8 +49,6 @@ class _HabitButtonState extends m.State<HabitButton>
   late final m.AnimationController _textColorAnimationController;
   late final m.Animation<m.Color?> _textColorAnimation;
 
-  m.Size _screenSize = m.Size.zero;
-
   void _setupOutlineColorAnimation() {
     _outlineColorAnimationController = m.AnimationController(
       vsync: this,
@@ -168,9 +166,8 @@ class _HabitButtonState extends m.State<HabitButton>
       widget._text,
       style: m.TextStyle(
         color: _textColorAnimation.value,
-        fontSize: s.fromScreenSize(
+        fontSize: s.r(
           17.0,
-          _screenSize,
         ),
         fontWeight: m.FontWeight.w600,
       ),
@@ -179,21 +176,18 @@ class _HabitButtonState extends m.State<HabitButton>
 
   m.Container _buildIcon() {
     return m.Container(
-      width: s.fromScreenSize(
-        52.0,
-        _screenSize,
+      width: s.r(
+        30.0,
       ),
-      height: s.fromScreenSize(
-        52.0,
-        _screenSize,
+      height: s.r(
+        30.0,
       ),
       decoration: m.BoxDecoration(
         color: c.lightPurple,
         borderRadius: m.BorderRadius.all(
           m.Radius.circular(
-            s.fromScreenSize(
-              c.defaultBorderRadius,
-              _screenSize,
+            s.r(
+              8.0,
             ),
           ),
         ),
@@ -214,7 +208,6 @@ class _HabitButtonState extends m.State<HabitButton>
 
   @override
   m.Widget build(m.BuildContext context) {
-    _screenSize = m.MediaQuery.of(context).size;
     return m.ElevatedButton(
       style: m.ButtonStyle(
         side: m.MaterialStateProperty.all(
@@ -231,9 +224,8 @@ class _HabitButtonState extends m.State<HabitButton>
         ),
         padding: m.MaterialStateProperty.all(
           m.EdgeInsets.all(
-            s.fromScreenSize(
+            s.r(
               10.0,
-              _screenSize,
             ),
           ),
         ),
@@ -243,18 +235,16 @@ class _HabitButtonState extends m.State<HabitButton>
         minimumSize: m.MaterialStateProperty.all(
           m.Size(
             0.0,
-            s.fromScreenSize(
-              72.0,
-              _screenSize,
+            s.r(
+              56.0,
             ),
           ),
         ),
         shape: m.MaterialStateProperty.all<m.RoundedRectangleBorder>(
           m.RoundedRectangleBorder(
             borderRadius: m.BorderRadius.circular(
-              s.fromScreenSize(
+              s.r(
                 c.defaultBorderRadius,
-                _screenSize,
               ),
             ),
           ),
@@ -269,9 +259,8 @@ class _HabitButtonState extends m.State<HabitButton>
         children: [
           _buildIcon(),
           m.SizedBox(
-            width: s.fromScreenSize(
+            width: s.r(
               16.0,
-              _screenSize,
             ),
           ),
           _buildLabel(),

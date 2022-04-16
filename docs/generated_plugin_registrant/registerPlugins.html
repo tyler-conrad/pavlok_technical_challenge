@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
-  <meta name="description" content="API docs for the sweepAngleMinutes function from the shared library, for the Dart programming language.">
-  <title>sweepAngleMinutes function - shared library - Dart API</title>
+  <meta name="description" content="API docs for the registerPlugins function from the generated_plugin_registrant library, for the Dart programming language.">
+  <title>registerPlugins function - generated_plugin_registrant library - Dart API</title>
 
 
   
@@ -30,10 +30,10 @@
   <button id="sidenav-left-toggle" type="button">&nbsp;</button>
   <ol class="breadcrumbs gt-separated dark hidden-xs">
     <li><a href="../index.html">pavlok_technical_challenge</a></li>
-    <li><a href="../shared/shared-library.html">shared</a></li>
-    <li class="self-crumb">sweepAngleMinutes function</li>
+    <li><a href="../generated_plugin_registrant/generated_plugin_registrant-library.html">generated_plugin_registrant</a></li>
+    <li class="self-crumb">registerPlugins function</li>
   </ol>
-  <div class="self-name">sweepAngleMinutes</div>
+  <div class="self-name">registerPlugins</div>
   <form class="search navbar-right" role="search">
     <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
   </form>
@@ -44,7 +44,7 @@
 
   <div id="dartdoc-main-content" class="main-content">
       <div>
-<h1><span class="kind-function">sweepAngleMinutes</span> function 
+<h1><span class="kind-function">registerPlugins</span> function 
     <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
  
 </h1></div>
@@ -52,31 +52,21 @@
     <section class="multi-line-signature">
         
 
-<span class="returntype"><a href="https://api.flutter.dev/flutter/dart-core/int-class.html">int</a></span>
-<span class="name ">sweepAngleMinutes</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="sweepAngleMinutes-param-angle"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/dart-core/double-class.html">double</a></span> <span class="parameter-name">angle</span></span></li>
+<span class="returntype">void</span>
+<span class="name ">registerPlugins</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="registerPlugins-param-registrar"><span class="type-annotation"><a href="https://api.flutter.dev/flutter/flutter_web_plugins/Registrar-class.html">Registrar</a></span> <span class="parameter-name">registrar</span></span></li>
 </ol>)
 
     </section>
     
-<section class="desc markdown">
-  <p>The number of minutes over an hour represented by an angle in radians.</p>
-</section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">int sweepAngleMinutes(double angle) =&gt; (durationRoundedToFiveMinutesFromAngle(
-          convertToPositiveDirection(
-            angle,
-          ),
-        ) -
-        Duration(
-          hours: sweepAngleHours(
-            angle,
-          ),
-        ))
-    .inMinutes;</code></pre>
+  <pre class="language-dart"><code class="language-dart">void registerPlugins(Registrar registrar) {
+  SharedPreferencesPlugin.registerWith(registrar);
+  registrar.registerMessageHandler();
+}</code></pre>
 </section>
 
 
@@ -91,27 +81,21 @@
 
 <ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
   <li><a href="../index.html">pavlok_technical_challenge</a></li>
-  <li><a href="../shared/shared-library.html">shared</a></li>
-  <li class="self-crumb">sweepAngleMinutes function</li>
+  <li><a href="../generated_plugin_registrant/generated_plugin_registrant-library.html">generated_plugin_registrant</a></li>
+  <li class="self-crumb">registerPlugins function</li>
 </ol>
 
 
-    <h5>shared library</h5>
+    <h5>generated_plugin_registrant library</h5>
     <ol>
 
 
 
 
 
-  <li class="section-title"><a href="../shared/shared-library.html#functions">Functions</a></li>
-  <li><a href="../shared/convertToPositiveDirection.html">convertToPositiveDirection</a></li>
-  <li><a href="../shared/durationRoundedToFiveMinutesFromAngle.html">durationRoundedToFiveMinutesFromAngle</a></li>
-  <li><a href="../shared/r.html">r</a></li>
-  <li><a href="../shared/sweepAngleHours.html">sweepAngleHours</a></li>
-  <li><a href="../shared/sweepAngleMinutes.html">sweepAngleMinutes</a></li>
+  <li class="section-title"><a href="../generated_plugin_registrant/generated_plugin_registrant-library.html#functions">Functions</a></li>
+  <li><a href="../generated_plugin_registrant/registerPlugins.html">registerPlugins</a></li>
 
-  <li class="section-title"><a href="../shared/shared-library.html#enums">Enums</a></li>
-  <li><a href="../shared/HabitType.html">HabitType</a></li>
 
 
 </ol>

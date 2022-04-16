@@ -184,9 +184,8 @@ class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
                         child: m.Text(
                           minutes,
                           style: m.TextStyle(
-                            fontSize: s.fromScreenSize(
+                            fontSize: s.r(
                               6.0 * fadeFactor + 18.0,
-                              _screenSize,
                             ),
                             fontWeight: m.FontWeight.w500,
                             color: c.black2.withOpacity(
@@ -209,9 +208,8 @@ class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
             child: m.Text(
               'min',
               style: m.TextStyle(
-                fontSize: s.fromScreenSize(
+                fontSize: s.r(
                   24.0,
-                  _screenSize,
                 ),
                 fontWeight: m.FontWeight.w500,
                 color: c.black2,
@@ -235,21 +233,17 @@ class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
       height: _screenSize.height * 0.5,
       child: m.Padding(
         padding: m.EdgeInsets.only(
-          left: s.fromScreenSize(
+          left: s.r(
             24.0,
-            _screenSize,
           ),
-          top: s.fromScreenSize(
+          top: s.r(
             8.0,
-            _screenSize,
           ),
-          right: s.fromScreenSize(
+          right: s.r(
             24.0,
-            _screenSize,
           ),
-          bottom: s.fromScreenSize(
+          bottom: s.r(
             18.0,
-            _screenSize,
           ),
         ),
         child: m.Column(
@@ -270,9 +264,8 @@ class _ReminderMinutesPickerState extends m.State<ReminderMinutesPicker> {
                 'Reminder',
                 textAlign: m.TextAlign.center,
                 style: m.TextStyle(
-                  fontSize: s.fromScreenSize(
+                  fontSize: s.r(
                     23.0,
-                    _screenSize,
                   ),
                   fontWeight: m.FontWeight.w600,
                   color: c.black2,

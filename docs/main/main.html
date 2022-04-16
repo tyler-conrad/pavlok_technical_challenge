@@ -63,21 +63,7 @@
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
   <pre class="language-dart"><code class="language-dart">void main() {
-  m.runApp(
-    m.MaterialApp(
-      theme: _themeData(),
-      themeMode: m.ThemeMode.light,
-      initialRoute: &#39;&#47;habit&#39;,
-      routes: {
-        &#39;&#47;habit&#39;: (_context) =&gt; const m.Scaffold(
-              body: sgs.SelectGoalScreen(),
-            ),
-        &#39;&#47;sleep&#39;: (_context) =&gt; const m.Scaffold(
-              body: sds.SleepDurationScreen(),
-            )
-      },
-    ),
-  );
+  m.runApp(const HabitApp());
 }</code></pre>
 </section>
 
@@ -100,6 +86,8 @@
 
     <h5>main library</h5>
     <ol>
+  <li class="section-title"><a href="../main/main-library.html#classes">Classes</a></li>
+  <li><a href="../main/HabitApp-class.html">HabitApp</a></li>
 
 
 

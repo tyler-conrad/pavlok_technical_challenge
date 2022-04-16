@@ -43,8 +43,6 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
   /// handle position change occurs
   late final m.Listenable _onHandleUpdate;
 
-  m.Size _screenSize = m.Size.zero;
-
   /// The interval in minutes that the [rmp.ReminderMinutesPicker] should be
   /// initialized to.
   int? _reminderMinutes = 30;
@@ -92,7 +90,7 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
           ? 'Under your sleep goal ( $_sleepGoalHoursString )'
           : 'Over your sleep goal ( $_sleepGoalHoursString )',
       style: m.TextStyle(
-        fontSize: s.fromScreenSize(12.0, _screenSize),
+        fontSize: s.r(12.0,),
         fontWeight: m.FontWeight.w500,
       ),
       textAlign: m.TextAlign.center,
@@ -141,19 +139,16 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
             children: [
               svg.SvgPicture.asset(
                 'assets/svg/bulb.svg',
-                width: s.fromScreenSize(
+                width: s.r(
                   24.0,
-                  _screenSize,
                 ),
-                height: s.fromScreenSize(
+                height: s.r(
                   24.0,
-                  _screenSize,
                 ),
               ),
               m.SizedBox(
-                width: s.fromScreenSize(
+                width: s.r(
                   8.0,
-                  _screenSize,
                 ),
               ),
               _sleepGoalLabel(),
@@ -197,7 +192,7 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                 handleType,
                 textAlign: m.TextAlign.left,
                 style: m.TextStyle(
-                  fontSize: s.fromScreenSize(12.0, _screenSize),
+                  fontSize: s.r(12.0, ),
                   fontWeight: m.FontWeight.w600,
                   color: c.gray,
                 ),
@@ -211,7 +206,7 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                 ),
                 textAlign: m.TextAlign.left,
                 style: m.TextStyle(
-                  fontSize: s.fromScreenSize(20.0, _screenSize),
+                  fontSize: s.r(20.0, ),
                   fontWeight: m.FontWeight.w600,
                 ),
               ),
@@ -227,7 +222,6 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
 
   @override
   m.Widget build(m.BuildContext context) {
-    _screenSize = m.MediaQuery.of(context).size;
     return sp.ScreenPadding(
       child: m.Column(
         children: [
@@ -250,15 +244,13 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                           padding: const m.EdgeInsets.all(
                             0.0,
                           ),
-                          iconSize: s.fromScreenSize(
+                          iconSize: s.r(
                             32.0,
-                            _screenSize,
                           ),
                           icon: m.Icon(
                             m.Icons.chevron_left_sharp,
-                            size: s.fromScreenSize(
+                            size: s.r(
                               32.0,
-                              _screenSize,
                             ),
                           ),
                         ),
@@ -274,9 +266,8 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                   child: m.Text(
                     'Set bedtime and wake up',
                     style: m.TextStyle(
-                      fontSize: s.fromScreenSize(
+                      fontSize: s.r(
                         25.0,
-                        _screenSize,
                       ),
                       fontWeight: m.FontWeight.w600,
                     ),
@@ -294,26 +285,23 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                   child: _buildSleepGoalLabel(),
                 ),
                 m.Expanded(
-                  flex: 7,
+                  flex: 8,
                   child: m.Padding(
                     padding: m.EdgeInsets.only(
-                      left: s.fromScreenSize(
+                      left: s.r(
                         6.0,
-                        _screenSize,
                       ),
-                      top: s.fromScreenSize(
+                      top: s.r(
                         6.0,
-                        _screenSize,
                       ),
-                      bottom: s.fromScreenSize(
+                      bottom: s.r(
                         18.0,
-                        _screenSize,
                       ),
                     ),
                     child: m.Row(
                       children: [
                         m.Expanded(
-                          flex: 4,
+                          flex: 6,
                           child: _buildHandleTimeLabel(
                             'assets/svg/moon_purple.svg',
                             'Bedtime',
@@ -339,29 +327,24 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                     elevation: c.defaultHighElevation,
                     shape: m.RoundedRectangleBorder(
                       borderRadius: m.BorderRadius.circular(
-                        s.fromScreenSize(
+                        s.r(
                           c.defaultBorderRadius,
-                          _screenSize,
                         ),
                       ),
                     ),
                     child: m.Padding(
                       padding: m.EdgeInsets.only(
-                        left: s.fromScreenSize(
+                        left: s.r(
                           12.0,
-                          _screenSize,
                         ),
-                        top: s.fromScreenSize(
+                        top: s.r(
                           4.0,
-                          _screenSize,
                         ),
-                        right: s.fromScreenSize(
+                        right: s.r(
                           12.0,
-                          _screenSize,
                         ),
-                        bottom: s.fromScreenSize(
+                        bottom: s.r(
                           8.0,
-                          _screenSize,
                         ),
                       ),
                       child: m.Column(
@@ -376,7 +359,7 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                               'Repeat days',
                               textAlign: m.TextAlign.left,
                               style: m.TextStyle(
-                                fontSize: s.fromScreenSize(16.0, _screenSize),
+                                fontSize: s.r(16.0,),
                                 fontWeight: m.FontWeight.w900,
                                 letterSpacing: 1.0,
                                 color: c.black,
@@ -421,9 +404,8 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                             await m.showModalBottomSheet<int>(
                           shape: m.RoundedRectangleBorder(
                             borderRadius: m.BorderRadius.circular(
-                              s.fromScreenSize(
+                              s.r(
                                 c.defaultBorderRadius,
-                                _screenSize,
                               ),
                             ),
                           ),
@@ -445,9 +427,8 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                             m.RoundedRectangleBorder>(
                           m.RoundedRectangleBorder(
                             borderRadius: m.BorderRadius.circular(
-                              s.fromScreenSize(
+                              s.r(
                                 c.defaultBorderRadius,
-                                _screenSize,
                               ),
                             ),
                           ),
@@ -467,7 +448,7 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                               'Remind me before bed time',
                               textAlign: m.TextAlign.left,
                               style: m.TextStyle(
-                                fontSize: s.fromScreenSize(14.0, _screenSize),
+                                fontSize: s.r(14.0, ),
                                 fontWeight: m.FontWeight.w500,
                                 color: m.Colors.black,
                               ),
@@ -482,7 +463,7 @@ class _SleepDurationScreenState extends m.State<SleepDurationScreen> {
                               '$_reminderMinutes min',
                               textAlign: m.TextAlign.center,
                               style: m.TextStyle(
-                                fontSize: s.fromScreenSize(16.0, _screenSize),
+                                fontSize: s.r(16.0, ),
                                 fontWeight: m.FontWeight.w700,
                                 letterSpacing: 1.0,
                                 color: m.Colors.black,

@@ -102,8 +102,6 @@ class _ProgressBarState extends m.State<ProgressBar>
   late int _currentStep;
   double _easeProgress = 0.0;
 
-  m.Size _screenSize = m.Size.zero;
-
   void _setupEaseAnimation() {
     _easeController = m.AnimationController(
       vsync: this,
@@ -112,7 +110,7 @@ class _ProgressBarState extends m.State<ProgressBar>
         () {
           setState(
             () {
-              _easeProgress = _easeController.value;
+              _easeProgress = _easeAnimation.value;
             },
           );
         },
@@ -161,9 +159,8 @@ class _ProgressBarState extends m.State<ProgressBar>
     return m.Text(
       '$_currentStep of ${widget._steps}',
       style: m.TextStyle(
-        fontSize: s.fromScreenSize(
+        fontSize: s.r(
           14.0,
-          _screenSize,
         ),
         fontWeight: m.FontWeight.w500,
       ),
@@ -189,7 +186,6 @@ class _ProgressBarState extends m.State<ProgressBar>
   m.Widget build(
     m.BuildContext context,
   ) {
-    _screenSize = m.MediaQuery.of(context).size;
     return m.Row(
       children: [
         const m.Spacer(

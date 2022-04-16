@@ -20,20 +20,16 @@ class ScreenPadding extends m.StatelessWidget {
   m.Widget build(
     m.BuildContext context,
   ) {
-    final screenSize = m.MediaQuery.of(context).size;
     return m.Padding(
       padding: m.EdgeInsets.only(
-        left: s.fromScreenSize(
+        left: s.r(
           _screenPadding,
-          screenSize,
         ),
-        top: s.fromScreenSize(
+        top: s.r(
           _screenPadding,
-          screenSize,
         ),
-        right: s.fromScreenSize(
+        right: s.r(
           _screenPadding,
-          screenSize,
         ),
       ),
       child: _child,

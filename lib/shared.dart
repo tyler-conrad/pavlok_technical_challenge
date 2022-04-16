@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart' as m;
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import 'package:pavlok_technical_challenge/constants.dart' as c;
 
@@ -50,10 +51,13 @@ int sweepAngleMinutes(double angle) => (durationRoundedToFiveMinutesFromAngle(
         ))
     .inMinutes;
 
-double fromScreenSize(double baseSize, m.Size screenSize) => math.min(
-      baseSize,
-      baseSize * math.min(screenSize.width, screenSize.height) / 400.0,
-    );
+/// The input size scaled by the minimum of the width and height factors from
+/// the responsive_sizer library.
+double r(double size) {
+  final widthFactor = 0.2.w;
+  final heightFactor = 0.2.h;
+  return widthFactor > heightFactor ? heightFactor * size : widthFactor * size;
+}
 
 enum HabitType {
   good,

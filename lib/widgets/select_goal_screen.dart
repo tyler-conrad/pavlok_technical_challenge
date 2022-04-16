@@ -31,8 +31,6 @@ class _SelectGoalScreenState extends m.State<SelectGoalScreen>
   /// of the habit type tab header.
   s.HabitType _selectedHabitType = s.HabitType.good;
 
-  m.Size _screenSize = m.Size.zero;
-
   @override
   void dispose() {
     _habitPageController.dispose();
@@ -84,9 +82,8 @@ class _SelectGoalScreenState extends m.State<SelectGoalScreen>
   }) =>
       m.Padding(
         padding: m.EdgeInsets.symmetric(
-          vertical: s.fromScreenSize(
+          vertical: s.r(
             6.0,
-            _screenSize,
           ),
         ),
         child: m.MaterialButton(
@@ -103,9 +100,8 @@ class _SelectGoalScreenState extends m.State<SelectGoalScreen>
             ),
           ),
           padding: m.EdgeInsets.all(
-            s.fromScreenSize(
+            s.r(
               4.0,
-              _screenSize,
             ),
           ),
           onPressed: () {
@@ -124,7 +120,7 @@ class _SelectGoalScreenState extends m.State<SelectGoalScreen>
                 child: m.Text(
                   text,
                   style: m.TextStyle(
-                    fontSize: s.fromScreenSize(14.0, _screenSize),
+                    fontSize: s.r(13.0),
                     color: habitType == _selectedHabitType ? c.purple : c.gray,
                     fontWeight: m.FontWeight.w600,
                   ),
@@ -166,7 +162,6 @@ class _SelectGoalScreenState extends m.State<SelectGoalScreen>
 
   @override
   m.Widget build(m.BuildContext context) {
-    _screenSize = m.MediaQuery.of(context).size;
     return sp.ScreenPadding(
       child: m.Column(
         crossAxisAlignment: m.CrossAxisAlignment.stretch,
@@ -193,9 +188,8 @@ class _SelectGoalScreenState extends m.State<SelectGoalScreen>
                     child: m.Text(
                       "What's your main goal?",
                       style: m.TextStyle(
-                        fontSize: s.fromScreenSize(
+                        fontSize: s.r(
                           26.0,
-                          _screenSize,
                         ),
                         fontWeight: m.FontWeight.w600,
                       ),
@@ -210,7 +204,7 @@ class _SelectGoalScreenState extends m.State<SelectGoalScreen>
                   child: m.Text(
                     "Let's start with one of these habits.",
                     style: m.TextStyle(
-                      fontSize: s.fromScreenSize(17.0, _screenSize),
+                      fontSize: s.r(17.0,),
                       fontWeight: m.FontWeight.w500,
                     ),
                   ),

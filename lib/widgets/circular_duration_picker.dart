@@ -1,6 +1,5 @@
 import 'dart:ui' as ui;
 import 'dart:math' as math;
-import 'dart:io' as io;
 
 import 'package:vector_math/vector_math_64.dart' as vm;
 import 'package:flutter/material.dart' as m;
@@ -94,7 +93,8 @@ class CircularDurationPickerPainter extends m.CustomPainter {
         baseSize *
             math.min(canvasSize.width, canvasSize.height) /
             _canvasSizeScaleFactor,
-      );
+      ) *
+      s.r(1.0);
 
   /// Returns an [m.Path] that is a rectangle with a tube subtracted from it.
   ///
@@ -1007,12 +1007,7 @@ class _CircularDurationPickerState extends m.State<CircularDurationPicker>
   ) {
     return m.Padding(
       padding: m.EdgeInsets.all(
-        s.fromScreenSize(
-          8.0,
-          m.MediaQuery.of(
-            context,
-          ).size,
-        ),
+        s.r(8.0),
       ),
       child: m.LayoutBuilder(
         builder: (
