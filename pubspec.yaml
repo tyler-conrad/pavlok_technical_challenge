@@ -1,5 +1,5 @@
 name: pavlok_technical_challenge
-description: A new Flutter project.
+description: A mockup of a couple screens in Flutter for part of the Pavlok hiring process.
 
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -36,14 +36,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.0.3
   responsive_sizer: ^3.0.5+1
-  provider: ^6.0.2
-
-  device_preview:
-    git:
-      url: https://github.com/tyler-conrad/flutter_device_preview.git
-      path: device_preview
-      ref: hide_show_toolbar_listen_false
-
 
 dev_dependencies:
   flutter_test:
